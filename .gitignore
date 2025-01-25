@@ -1,0 +1,51 @@
+vpress/node_modules
+vpress/docs/.vitepress/cache
+
+# Logs
+logs
+*.log
+vpress/npm-debug.log*
+vpress/yarn-debug.log*
+vpress/yarn-error.log*
+
+# Dependency directories
+.bower_components/
+
+# Dependency logs
+vpress/package-lock.json
+vpress/yarn.lock
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE and editor specific files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Lua-specific
+*.luac
+*.tmp
+*.swp
+
+# LuaRocks
+*.rock
+*.rockspec
+
+# Busted (Lua test framework)
+.busted
+
+# Other temporary files
+*.out
+*.obj
+

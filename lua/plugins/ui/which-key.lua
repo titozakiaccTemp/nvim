@@ -11,7 +11,27 @@ return {
     },
     spec = {
       {
-        { "<leader>u", group = "UI" },
+        { "<leader>t", group = "NETRW" },
+
+        { "<leader>c", group = "Code" },
+        { "<leader>cs", group = "Rename all every same word like in under cursor" },
+        { "<leader>cx", group = "Make current buffer executable" },
+
+        { "<leader>y", group = "Yank options" },
+        { "<leader>Y", group = "Yank to system clipboard" },
+
+        { "<leader>m", group = "Miscellaneous" },
+        { "<leader>ml", group = "LSP things" },
+        { "<leader>mu", group = "UI things" },
+
+        { "<leader>f", group = "Telescope" },
+        { "<leader>s", group = "Search" },
+      },
+      {
+        mode = { "v" },
+        { "<leader>y", group = "Yank to system clipboard" },
+        { "<leader>c", group = "Code" },
+        { "<leader>u", group = "Screenshot" },
       }
     }
   },

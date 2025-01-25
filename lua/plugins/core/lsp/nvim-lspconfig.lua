@@ -1,7 +1,10 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    dependencies = { 'saghen/blink.cmp',
+    keys = {
+      { "<leader>mlc", function() vim.cmd("checkhealth vim.lsp") end, desc = "check lsp",   mode = { "n" } },
+
+      { "<leader>ca",  function() vim.lsp.buf.code_action() end, desc = "Code Action", mode = { "n" } },
     },
     config = function()
       --  format when save
