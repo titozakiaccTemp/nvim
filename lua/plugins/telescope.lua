@@ -1,50 +1,30 @@
 return {
-	{
-		"nvim-telescope/telescope.nvim",
-		tag = "0.1.5",
-		-- or                              , branch = '0.1.x',
-		dependencies = { "nvim-lua/plenary.nvim" },
+  'nvim-telescope/telescope.nvim',
+  tag = '0.1.8',
+  dependencies = { 'nvim-lua/plenary.nvim' },
+  keys = {
+    { "<leader>ff", "<cmd>Telescope find_files<cr>",  desc = "Lists files in your current working directory, respects .gitignore" },
+    { "<leader>fg", "<cmd>Telescope git_files<cr>" },
+    { "<leader>sg", "<cmd>Telescope live_grep<cr>" },
+    { "<leader>uC", "<cmd>Telescope colorscheme<cr>", desc = "Lists Colorscheme" },
+  },
+  opts = function()
+    require('telescope').setup {
+      defaults = {},
+      pickers = {
+        colorscheme = {
+          enable_preview = true
+        }
+      },
+      extensions = {
+        fzf = {} -- use native fzf to make it better and faster
+      }
+    }
 
-		config = function()
-			local builtin = require("telescope.builtin")
-
-			vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
-			vim.keymap.set("n", "<C-p>", builtin.git_files, {})
-			vim.keymap.set("n", "<leader>fg", function()
-				builtin.grep_string({ search = vim.fn.input("Grep > ") })
-			end)
-		end,
-	},
-	{
-		"nvim-telescope/telescope-ui-select.nvim",
-		config = function()
-			-- This is your opts table
-			require("telescope").setup({
-				extensions = {
-					["ui-select"] = {
-						require("telescope.themes").get_dropdown({
-							-- even more opts
-						}),
-
-						-- pseudo code / specification for writing custom displays, like the one
-						-- for "codeactions"
-						-- specific_opts = {
-						--   [kind] = {
-						--     make_indexed = function(items) -> indexed_items, width,
-						--     make_displayer = function(widths) -> displayer
-						--     make_display = function(displayer) -> function(e)
-						--     make_ordinal = function(e) -> string
-						--   },
-						--   -- for example to disable the custom builtin "codeactions" display
-						--      do the following
-						--   codeactions = false,
-						-- }
-					},
-				},
-			})
-			-- To get ui-select loaded and working with telescope, you need to call
-			-- load_extension, somewhere after setup function:
-			require("telescope").load_extension("ui-select")
-		end,
-	},
+    vim.keymap.set("n", "<leader>fp", function()
+      require('telescope.builtin').find_files {
+        cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")
+      }
+    end)
+  end,
 }

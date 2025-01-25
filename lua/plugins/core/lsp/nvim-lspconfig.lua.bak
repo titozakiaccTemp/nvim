@@ -1,0 +1,99 @@
+--mason provides a repository and frontend that helps a user manage the installation of various third-party tools (LSP servers, formatters, linters, etc...) that can be useful when running neovim. It also provides an API for plugin developers. (the 'repository' mentioned earlier is not of the tools themselves, but of configuration that details how to install each tool.)
+--nvimlsp
+--nvim-lspconfig provides (very) basic configurations for LSP servers, and a simpler configuration to interact with neovim. One thing it does not, and cannot easily, provide is the path to the command to use when launching the server. This brings me to...
+--
+--mason-lspconfig uses Mason to ensure installation of user specified LSP servers and will tell nvim-lspconfig what command to use to launch those servers.
+--
+--nvim-lsp-installer has been superseded by mason + mason-lspconfig.
+--
+--I would recommend all of mason, mason-lspconfig, nvim-lspconfig. They do not conflict, they work together.
+--
+--f
+return {
+
+
+  "neovim/nvim-lspconfig",
+  dependencies = { 'saghen/blink.cmp' },
+  keys = {
+    { "K", function() return vim.lsp.buf.hover() end, desc = "Hover" },
+    --	{ "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
+    --	{ "gd", vim.lsp.buf.definition, desc = "Goto Definition", has = "definition" },
+    --	{ "gr", vim.lsp.buf.references, desc = "References", nowait = true },
+    --	{ "gI", vim.lsp.buf.implementation, desc = "Goto Implementation" },
+    --	{ "gy", vim.lsp.buf.type_definition, desc = "Goto T[y]pe Definition" },
+    --	{ "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
+    --	{ "K", function() return vim.lsp.buf.hover() end, desc = "Hover" },
+    --	{ "gK", function() return vim.lsp.buf.signature_help() end, desc = "Signature Help", has = "signatureHelp" },
+    --	{ "<c-k>", function() return vim.lsp.buf.signature_help() end, mode = "i", desc = "Signature Help", has = "signatureHelp" },
+    --	{ "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" },
+    --	{ "<leader>cc", vim.lsp.codelens.run, desc = "Run Codelens", mode = { "n", "v" }, has = "codeLens" },
+    --	{ "<leader>cC", vim.lsp.codelens.refresh, desc = "Refresh & Display Codelens", mode = { "n" }, has = "codeLens" },
+    --	{ "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File", mode ={"n"}, has = { "workspace/didRenameFiles", "workspace/willRenameFiles" } },
+    --	{ "<leader>cr", vim.lsp.buf.rename, desc = "Rename", has = "rename" },
+    --	-- { "<leader>cA", LazyVim.lsp.action.source, desc = "Source Action", has = "codeAction" },
+    --	{ "]]", function() Snacks.words.jump(vim.v.count1) end, has = "documentHighlight",
+    --	  desc = "Next Reference", cond = function() return Snacks.words.is_enabled() end },
+    --	{ "[[", function() Snacks.words.jump(-vim.v.count1) end, has = "documentHighlight",
+    --	  desc = "Prev Reference", cond = function() return Snacks.words.is_enabled() end },
+    --	{ "<a-n>", function() Snacks.words.jump(vim.v.count1, true) end, has = "documentHighlight",
+    --	  desc = "Next Reference", cond = function() return Snacks.words.is_enabled() end },
+    --	{ "<a-p>", function() Snacks.words.jump(-vim.v.count1, true) end, has = "documentHighlight", desc = "Prev Reference", cond = function() return Snacks.words.is_enabled() end },
+  },
+  dependencies = {
+    "mason.nvim",
+    { "williamboman/mason-lspconfig.nvim", config = function() end },
+  },
+  config = function()
+    vim.api.nvim_create_autocmd('LspAttach', {
+      callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if not client then return end
+        if client.supports_method('textDocument/formatting') then
+          vim.api.nvim_create_autocmd('BufWritePre', {
+            buffer = args.buf,
+            callback = function()
+              vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
+            end,
+          })
+        end
+      end,
+    })
+
+    --local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    local capabilities = require('blink.cmp').get_lsp_capabilities()
+    local lspconfig = require("lspconfig")
+    lspconfig['lua-ls'].setup({ capabilities = capabilities })
+
+    -- lspconfig.lua_ls.setup({
+    --   capabilities = capabilities,
+    -- })
+
+    -- zig language server
+    -- lspconfig.zls.setup({
+    --   -- Additional configuration options can be provided for each LSP server by passing arguments to the setup function. See :h lspconfig-setup for details.
+
+    --   -- For servers not on your $PATH (e.g., jdtls, elixirls), you must manually set the cmd parameter when calling setup().
+    --   -- karna zls bisa langsung di running menggunakan command `zls` pada terminal sehingga kita tidak perlu set cmd parameter disini.
+    --   -- You must pass capabilities for each setup {} if you want these to take effect.
+    --   capabilities = capabilities,
+    --   -- Do not call setup {} twice for the same server. The second call to setup {} will overwrite the first.
+    -- })
+
+
+    -- FLUTTER TOOLS START
+    -- TIDAK PERLU SETUP DARTLS LAGI DISINI, PLUGIN FLUTTER TOOLS SUDAH MELAKUKANNYA
+    -- lspconfig.dartls.setup({
+    --   capabilities = capabilities,
+    --   cmd = { "dart", "language-server", "--protocol=lsp" },
+    -- })
+    -- FLUTTER TOOLS END
+
+    -- lspconfig.yamlls.setup({
+    --   capabilities = capabilities,
+    -- })
+
+    -- vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+    -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
+    -- vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
+  end,
+}

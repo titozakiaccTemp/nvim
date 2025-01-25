@@ -1,0 +1,172 @@
+return {
+  {
+    'saghen/blink.cmp',
+    dependencies = {
+      'rafamadriz/friendly-snippets',
+    },
+    version = '*',
+    opts = {
+      sources = {
+        default = { "lsp", "path", "snippets", "buffer" },
+      },
+      -- snippets = {
+      --   preset = "luasnip",
+      -- },
+      completion = {
+        keyword = { range = 'full' },
+        accept = { auto_brackets = { enabled = true },
+        },
+        -- Show documentation when selecting a completion item
+        documentation = { auto_show = true, auto_show_delay_ms = 0 },
+        menu = {
+          -- Don't show completion menu automatically in cmdline mode
+          -- auto_show = function(ctx) return ctx.mode ~= 'cmdline' end,
+          draw = {
+            -- buat list snippets jadi berwarna, entah akan sangat berpengaruh pada performa atau tidak
+            treesitter = { "lsp" }, -- Use treesitter to highlight the label text for the given list of sources
+          },
+        }
+      },
+      keymap = {
+        preset = 'enter',
+        ["<CR>"] = {
+          -- function yang dijalankan ketika press enter saat muncul saat completion
+          function(cmp)
+            -- jika completionnya bukan di mode command, enter kita gunakan untuk accept pilihan completion
+            if vim.fn.mode() ~= "c" then
+              return cmp.select_and_accept()
+            else
+              -- jika completionnya di mode command, enter adalah tombol yang bekerja seperti biasa dan bukan untuk accept completion
+              vim.api.nvim_feedkeys('\n', 'n', true)
+            end
+            -- jika completion tidak muncul, kita fallback atau lakukan apa yang biasanya tombol enter lakukan normalnya
+          end, "fallback"
+        },
+        --['<Up>'] = { 'select_prev', 'fallback' },
+        -- ['<Down>'] = { 'select_next', 'fallback' },
+        -- ['<CR>'] = { 'accept', 'fallback' },
+
+      },
+      appearance = {
+        use_nvim_cmp_as_default = true,
+        nerd_font_variant = 'mono',
+        kind_icons = {
+          Array         = "[Array] ",
+          Boolean       = "[Boolean] ",
+          Class         = '[Class]',
+          Codeium       = "[Codeium] ",
+          Color         = "[Color] ",
+          Constructor   = '[Constructor]',
+          Control       = "[Control] ",
+          Collapsed     = "[Collapsed] ",
+          Constant      = "[Constant] ",
+          Copilot       = "[Copilot] ",
+          Enum          = "[Enum] ",
+          EnumMember    = "[EnumMember] ",
+          Event         = "[Event] ",
+          Field         = "[Field] ",
+          File          = "[File] ",
+          Folder        = "[Folder] ",
+          Function      = "[Function] ",
+          Interface     = "[Interface] ",
+          Key           = "[Key] ",
+          Keyword       = "[Keyword] ",
+          Method        = "[Method] ",
+          Module        = "[Module] ",
+          Namespace     = "[Namespace] ",
+          Null          = "[Null] ",
+          Number        = "[Number] ",
+          Object        = "[Object] ",
+          Operator      = "[Operator] ",
+          Package       = "[Package] ",
+          Property      = "[Property] ",
+          Reference     = "[Reference] ",
+          Snippet       = "[Snippet] ",
+          String        = "[String] ",
+          Struct        = "[Struct] ",
+          Supermaven    = "[Supermaven] ",
+          TabNine       = "[TabNine] ",
+          Text          = "[Text] ",
+          TypeParameter = "[TypeParameter] ",
+          Unit          = "[Unit] ",
+          Value         = "[Value] ",
+          Variable      = "[Variable] ",
+        },
+      },
+
+      signature = { enabled = true }
+    },
+  }
+}
+
+
+--  -- icons used by other plugins
+--  -- stylua: ignore
+--  icons = {
+--    misc = {
+--      dots = "...",
+--    },
+--    ft = {
+--      octo = "git",
+--    },
+--    dap = {
+--      Stopped             = { "> ", "DiagnosticWarn", "DapStoppedLine" },
+--      Breakpoint          = "(*) ",
+--      BreakpointCondition = "(?) ",
+--      BreakpointRejected  = { "(!) ", "DiagnosticError" },
+--      LogPoint            = ".>",
+--    },
+--    diagnostics = {
+--      Error = "(X) ",
+--      Warn  = "(!) ",
+--      Hint  = "(!) ",
+--      Info  = "(i) ",
+--    },
+--    git = {
+--      added    = "(+) ",
+--      modified = "(m) ",
+--      removed  = "(-) ",
+--    },
+--    kinds = {
+--      Array         = "[Array] ",
+--      Boolean       = "[Boolean] ",
+--      Codeium       = "[Codeium] ",
+--      Color         = "[Color] ",
+--      Control       = "[Control] ",
+--      Collapsed     = "[Collapsed] ",
+--      Constant      = "[Constant] ",
+--      Constructor   = "[Constructor] ",
+--      Copilot       = "[Copilot] ",
+--      Enum          = "[Enum] ",
+--      EnumMember    = "[EnumMember] ",
+--      Event         = "[Event] ",
+--      Field         = "[Field] ",
+--      File          = "[File] ",
+--      Folder        = "[Folder] ",
+--      Function      = "[Function] ",
+--      Interface     = "[Interface] ",
+--      Key           = "[Key] ",
+--      Keyword       = "[Keyword] ",
+--      Method        = "[Method] ",
+--      Module        = "[Module] ",
+--      Namespace     = "[Namespace] ",
+--      Null          = "[Null] ",
+--      Number        = "[Number] ",
+--      Object        = "[Object] ",
+--      Operator      = "[Operator] ",
+--      Package       = "[Package] ",
+--      Property      = "[Property] ",
+--      Reference     = "[Reference] ",
+--      Snippet       = "[Snippet] ",
+--      String        = "[String] ",
+--      Struct        = "[Struct] ",
+--      Supermaven    = "[Supermaven] ",
+--      TabNine       = "[TabNine] ",
+--      Text          = "[Text] ",
+--      TypeParameter = "[TypeParameter] ",
+--      Unit          = "[Unit] ",
+--      Value         = "[Value] ",
+--      Variable      = "[Variable] ",
+--    },
+--  },
+--
