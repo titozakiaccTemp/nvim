@@ -1,11 +1,6 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    keys = {
-      { "<leader>mlc", function() vim.cmd("checkhealth vim.lsp") end, desc = "check lsp",   mode = { "n" } },
-
-      { "<leader>ca",  function() vim.lsp.buf.code_action() end, desc = "Code Action", mode = { "n" } },
-    },
     config = function()
       --  format when save
       vim.api.nvim_create_autocmd('LspAttach', {

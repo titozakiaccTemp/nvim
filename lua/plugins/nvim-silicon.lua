@@ -6,7 +6,6 @@ return {
   lazy = true,
   cmd = "Silicon",
   keys = {
-    --{ "<leader>s", group = "Silicon" },
     {
       "<leader>uc",
       function()

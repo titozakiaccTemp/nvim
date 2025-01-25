@@ -27,3 +27,19 @@ vim.keymap.set("n", "<leader>cx", "<cmd>!chmod +x %<CR>", { silent = true })
 --   require("telescope.builtin").resume,
 --   { noremap = true, silent = true, desc = "resume" }
 -- )
+
+--
+
+-- "neovim/nvim-lspconfig",
+vim.keymap.set("n", "<leader>mlc", function()
+  vim.cmd("checkhealth vim.lsp")
+end, { desc = "Check LSP health" })
+
+vim.keymap.set("n", "<leader>ca", function()
+  vim.lsp.buf.code_action()
+end, { desc = "Code Action" })
+
+-- "williamboman/mason.nvim",
+vim.keymap.set("n", "<leader>mlm", function()
+  vim.cmd("Mason")
+end, { desc = "Open Mason" })
