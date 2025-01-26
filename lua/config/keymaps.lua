@@ -21,6 +21,20 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set("n", "<leader>cs", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>cx", "<cmd>!chmod +x %<CR>", { silent = true })
 
+vim.keymap.set("n", "<leader>uv", function()
+  vim.cmd("vsplit")
+end, { desc = "Split window left" })
+
+vim.keymap.set("n", "<leader>uh", function()
+  vim.cmd("split")
+end, { desc = "Split window bellow" })
+
+vim.keymap.set("n", "<leader>ud", function()
+  vim.cmd("close")
+end, { desc = "Delete window" })
+
+vim.keymap.set("n", "<leader>w","<c-w>" , { desc = "Move to next window" })
+
 -- vim.keymap.set(
 --   "n",
 --   "<leader>sx",
@@ -37,12 +51,12 @@ end, { desc = "Check LSP health" })
 
 vim.keymap.set("n", "<leader>ca", function()
   vim.lsp.buf.code_action()
-end, { desc = "Code Action" })
+end, { desc = "Code action" })
 
 -- "williamboman/mason.nvim",
 vim.keymap.set("n", "<leader>mlm", function()
   vim.cmd("Mason")
-end, { desc = "Open Mason" })
+end, { desc = "Open mason" })
 
 -- "nvimtools/none-ls",
 vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "none-ls format" })

@@ -24,3 +24,8 @@ vim.opt.termguicolors = true
 
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
+
+vim.opt.swapfile = false
+
+vim.g.netrw_banner = 0 -- This get's rif of that stupid banner
+vim.g.netrw_liststyle = 0
