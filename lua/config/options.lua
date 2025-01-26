@@ -3,6 +3,9 @@ vim.opt.winbar = "%=%m %f" -- winbar pada upper right buffer
 vim.o.scrolloff = 15
 -- Set colorscheme
 vim.cmd.colorscheme("tokyonight")
+--vim.cmd.colorscheme("delek")
+-- vim.cmd.colorscheme("monokai-nightasty")
+-- vim.o.background = "light"
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
