@@ -43,3 +43,6 @@ end, { desc = "Code Action" })
 vim.keymap.set("n", "<leader>mlm", function()
   vim.cmd("Mason")
 end, { desc = "Open Mason" })
+
+-- "nvimtools/none-ls",
+vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "none-ls format" })

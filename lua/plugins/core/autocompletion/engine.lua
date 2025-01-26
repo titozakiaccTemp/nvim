@@ -2,7 +2,7 @@
 -- A completion engine plugin for neovim written in Lua. Completion sources are installed from external repositories and "sourced".
 --  Autocompletion engine yang memberikan daftar saran saat mengetik.
 return {
-  'hrsh7th/nvim-cmp',
+  "hrsh7th/nvim-cmp",
   opts = function()
     local cmp = require("cmp")
 
@@ -11,19 +11,19 @@ return {
       -- snippet engine
       snippet = {
         expand = function(args)
-          require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+          require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
           -- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
         end,
       },
       sources = {
-        { name = 'luasnip' },
+        { name = "luasnip" },
         { name = "nvim_lsp" },
-        { name = 'nvim_lua' },
+        { name = "nvim_lua" },
         { name = "path" },
         { name = "buffer" },
       },
       mapping = cmp.mapping.preset.insert({
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
       }),
       window = {
         completion = cmp.config.window.bordered(),
@@ -50,25 +50,25 @@ return {
           vim_item.kind = vim_item.kind
 
           return vim_item
-        end
-      }
+        end,
+      },
     })
 
     -- `/` cmdline setup. ketika melalukan searching dengan / atau ?
-    cmp.setup.cmdline({ '/', '?' }, {
+    cmp.setup.cmdline({ "/", "?" }, {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {
-        { name = 'buffer' }
-      }
+        { name = "buffer" },
+      },
     })
 
-    cmp.setup.cmdline(':', {
+    cmp.setup.cmdline(":", {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {
-        { name = 'path' },
-        { name = 'cmdline' }
+        { name = "path" },
+        { name = "cmdline" },
       },
-      matching = { disallow_symbol_nonprefix_matching = false }
+      matching = { disallow_symbol_nonprefix_matching = false },
     })
   end,
 }
