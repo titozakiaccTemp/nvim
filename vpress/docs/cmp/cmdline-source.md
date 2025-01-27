@@ -29,7 +29,7 @@ disini kita hanya daftarkan pada konfigurasi untuk kondisi saat menjalankan comm
 ## Result
 
 ### Before
-<img src="[https://raw.githubusercontent.com/rizkia-as-pac/nvim/refs/heads/main/public/2025-01-28_08-10.png" width="400">
+<img src="https://raw.githubusercontent.com/rizkia-as-pac/nvim/refs/heads/main/public/2025-01-28_08-10.png" width="400">
 
 ### After
-<img src="[https://raw.githubusercontent.com/rizkia-as-pac/nvim/refs/heads/main/public/2025-01-28_08-17.png" width="400">
+<img src="https://raw.githubusercontent.com/rizkia-as-pac/nvim/refs/heads/main/public/2025-01-28_08-17.png" width="400">
