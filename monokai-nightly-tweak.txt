@@ -1,0 +1,16 @@
+---@class Palette
+local M = {
+  -- ref:  ~/.local/share/nvim/lazy/monokai-nightasty.nvim/lua/monokai-nightasty/colors/light.lua
+  blue = "#0087ff", -- Class name
+  green = "#00aa00", -- function, method
+  magenta = "#ff004b",-- import, final
+  orange = "#ff9700", -- fields in class when class instance like `child` in this class(child: something)
+  purple = "#aa66ee", -- int, enum
+  yellow = "#ff4d00", -- string
+  charcoal = "#e3e3e3",-- whichkey window bg
+  comment = "#cccccc", -- comment
+  fg_dark = "#e6e6e6", -- key/field when use getter like definedtheme.dark, field 'bodytext' like in final string bodytext
+  -- Extra colors
+  red = "#ff005f", -- tulisan warning from lsp
+}
+

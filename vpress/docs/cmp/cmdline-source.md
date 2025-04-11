@@ -1,7 +1,7 @@
-# Cmdline Source
-Cmdline source adalah source yang berisi autocompletion untuk  perintah-perintah yang tersedia pada command line neovim.
+# Cmdline Source :wrench:
+Cmdline source adalah source yang berisi autocompletion untuk perintah-perintah yang tersedia pada command line Neovim. :computer:
 
-## Instalasi 
+## Instalasi :rocket:
 
 ```lua
 return {
@@ -9,8 +9,8 @@ return {
 }
 ```
 
-## Intergrasi dengan Autocompletion Engine
-Agar source ini dapat tersedia dan digunakan pada fitur autocompletion kita harus mendaftarkannya source ini terlebih dahulu pada konfigurasi autocompletion engine.
+## Integrasi dengan Autocompletion Engine :gear:
+Agar source ini dapat tersedia dan digunakan pada fitur autocompletion, kita harus mendaftarkannya terlebih dahulu pada konfigurasi autocompletion engine. :hammer:
 
 ```lua
 opts = function()
@@ -24,12 +24,12 @@ opts = function()
 end
 ```
 
-disini kita hanya daftarkan pada konfigurasi untuk kondisi saat menjalankan command menggunakan `:` saja. Alasannya karna selain dikondisi tersebut kita tidak perlu fitur ini, selain itu akan cukup mengganggu juga jika didaftarkan untuk dikondisi lain.
+Di sini, kita hanya mendaftarkan source ini untuk kondisi saat menjalankan command menggunakan : saja. Alasannya adalah karena selain kondisi tersebut, kita tidak memerlukan fitur ini. Selain itu, fitur ini bisa cukup mengganggu jika didaftarkan untuk kondisi lain. :warning:
 
-## Result
+## Hasil :sparkles: 
 
-### Before
+### Before :arrow_backward:
 <img src="https://raw.githubusercontent.com/rizkia-as-pac/nvim/refs/heads/main/public/2025-01-28_08-10.png" width="400">
 
-### After
+### After :arrow_forward:
 <img src="https://raw.githubusercontent.com/rizkia-as-pac/nvim/refs/heads/main/public/2025-01-28_08-17.png" width="400">
