@@ -1,0 +1,1 @@
+-- vim.keymap.set("n", "<leader>mce", "<cmd>exe 'edit' stdpath('config').'/lua/plugins/test-plugins.lua'<cr>", { desc = "plugin/extras testing testing" })
