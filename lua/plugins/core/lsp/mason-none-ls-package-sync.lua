@@ -7,11 +7,7 @@ return {
 	},
 	config = function()
 		require("mason-null-ls").setup({
-			ensure_installed = {
-				-- Opt to list sources here, when available in mason.
-				-- Note: this plugin uses the null-ls source names in the APIs it exposes - not mason.nvim package names.⇧
-				"stylua",
-			},
+			ensure_installed = require("plugins.core.setup-sources").null_ls_packages,
 			automatic_installation = false,
 			handlers = {},
 		})

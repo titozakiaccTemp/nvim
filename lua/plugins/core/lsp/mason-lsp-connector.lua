@@ -3,10 +3,7 @@ return {
 	"williamboman/mason-lspconfig.nvim",
 	opts = function()
 		require("mason-lspconfig").setup({
-			ensure_installed = {
-				"lua_ls",
-				"rust_analyzer",
-			},
+			ensure_installed = require("plugins.core.setup-sources").mason_lsps,
 		})
 	end,
 }
