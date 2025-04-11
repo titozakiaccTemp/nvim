@@ -1,0 +1,84 @@
+LSP vs Treesitter
+
+apa bedanya LSP dan Treesitter, dan apakah mereka saling membutuhkan atau malah saling overlap :
+https://www.reddit.com/r/neovim/comments/1109wgr/treesitter_vs_lsp_differences_ans_overlap/
+
+GPT dari link diatas :
+Postingan Reddit tersebut merupakan diskusi mendalam mengenai perbedaan dan tumpang tindih (overlap) antara Treesitter dan LSP (Language Server Protocol) dalam konteks editor teks seperti Neovim (dan juga Emacs yang sedang mengadopsinya). Berikut adalah poin-poin utama yang dibahas:
+1. Definisi dan Tujuan Utama
+
+    Treesitter:
+
+        Merupakan library untuk membangun dan memelihara abstract syntax tree (AST) dari file sumber secara real time.
+
+        Fokus utamanya adalah pada level file saja.
+
+        Digunakan untuk keperluan seperti syntax highlighting, indentation, folding, dan penyediaan objek sintaksis untuk manipulasi cepat.
+
+    LSP (Language Server Protocol):
+
+        Merupakan protokol yang menghubungkan editor dengan server bahasa, yang memahami bahasa secara mendalam di tingkat proyek.
+
+        Mampu melakukan analisis semantik, seperti validasi kode, auto-completion, linting, refactoring, dan fitur-fitur lain yang membutuhkan pemahaman konteks dari keseluruhan proyek.
+
+2. Perbedaan Fundamental
+
+    Ruang Lingkup dan Kecepatan:
+
+        Treesitter lebih cepat dan ringan untuk keperluan yang hanya memerlukan analisis sintaks di dalam file yang sedang dibuka.
+
+        LSP bekerja di seluruh proyek dan sering kali membutuhkan proses komunikasi antar proses (IPC), yang bisa menyebabkan inisialisasi atau respon yang lebih lambat pada proyek-proyek besar.
+
+    Jenis Analisis:
+
+        Treesitter fokus pada aspek sintaksis saja; misalnya, mengetahui bahwa sebuah variabel dideklarasikan atau fungsi dipanggil, tanpa memastikan keberadaan atau kesesuaian tipe data secara mendalam.
+
+        LSP melakukan analisis semantik yang mendalam, seperti memastikan apakah fungsi tersebut benar-benar ada, apakah tipe data yang dipakai konsisten, atau bagaimana elemen-elemen dalam kode berinteraksi satu sama lain.
+
+3. Fitur yang Tumpang Tindih (Overlap)
+
+    Syntax Highlighting:
+
+        Keduanya sebenarnya bisa menyediakan highlighting. Namun, banyak editor (terutama dalam implementasi Neovim) mengandalkan Treesitter untuk syntax highlighting karena kecepatannya dalam merespons perubahan pada buffer.
+
+        LSP terkadang menyediakan semantic tokens yang dapat menambahkan lapisan informasi tambahan di atas hasil highlighting dasar.
+
+    Auto-completion dan Navigasi:
+
+        Fitur seperti auto-completion, jump-to-definition, linting, dan diagnostics secara umum menjadi domain LSP, karena memerlukan pemahaman konteks semantik yang tidak disediakan Treesitter.
+
+4. Alasan Menggunakan Keduanya
+
+    Kecepatan vs. Kedalaman:
+
+        Treesitter unggul di kecepatan dan efektivitas dalam tugas-tugas ringan yang memerlukan respons real time seperti syntax highlighting.
+
+        LSP menawarkan informasi semantik yang lebih mendalam yang diperlukan untuk fitur-fitur kompleks seperti refactoring atau pengecekan kesalahan lintas file.
+
+    Ketahanan terhadap Kesalahan:
+
+        Treesitter dirancang untuk cukup tangguh bahkan ketika terdapat kesalahan sintaks (misalnya, kurangnya titik koma). Hal ini memastikan bahwa tampilan dan fungsi highlighting tidak langsung kacau meskipun kode belum sempurna.
+
+    Ketersediaan dan Implementasi:
+
+        Tidak semua bahasa pemrograman memiliki server LSP yang memadai. Oleh karena itu, Treesitter bisa menjadi alternatif yang andal untuk keperluan dasar terutama di bahasa-bahasa yang kurang didukung oleh LSP.
+
+5. Pendapat dan Pertanyaan Diskusi
+
+    Para pengguna bertanya apakah bisa hanya menggunakan satu dari kedua alat tersebut, atau bagaimana mengetahui fitur apa yang di-handle oleh plugin tertentu (misalnya, apakah coc.nvim mengandalkan Treesitter atau LSP untuk fitur-fitur tertentu).
+
+    Diskusi juga menyentuh tentang kecepatan startup dan responsivitas, di mana ada perbandingan kasus seperti bahasa Rust yang server LSP-nya kadang lambat inisialisasinya dibandingkan dengan kecepatan Treesitter.
+
+Kesimpulan
+
+Secara garis besar, kedua teknologi ini dianggap saling melengkapi:
+
+    Treesitter menangani aspek sintaksis dengan cepat dan andal pada level file, sementara
+
+    LSP menyajikan analisis semantik yang mendalam di tingkat proyek untuk fitur-fitur lanjutan.
+
+Dalam distribusi dan konfigurasi editor modern seperti Neovim, kedua pendekatan ini biasanya diintegrasikan agar pengguna mendapatkan manfaat dari kecepatan Treesitter dan kekayaan fitur dari LSP.
+
+Semoga penjelasan ini membantu Anda memahami isi diskusi tersebut!
+
+
