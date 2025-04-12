@@ -9,25 +9,25 @@ return {
 		-- 	desc = "Lists files in your current working directory, respects .gitignore",
 		-- },
 		-- { "<leader>fg", "<cmd>Telescope git_files<cr>" },
-		{ "<leader>fg", "<cmd>Telescope live_grep<cr>" },
-		{ "<leader>fr", "<cmd>Telescope lsp_references<cr>", desc = "Telescope all references" },
-		{
-			"<leader>fs",
-			"<cmd>Telescope lsp_document_symbols<cr>",
-			desc = "Lists LSP document symbols in the current buffer",
-		},
-		{
-			"<leader>fd",
-			"<cmd>Telescope lsp_definitions<cr>",
-			desc = "Goto the definition of the word under the cursor",
-		},
-		{
-			"<leader>fx",
-			"<cmd>Telescope diagnostics<cr>",
-			desc = "Lists Diagnostics for all open buffers or a specific buffer",
-		},
-
-		{ "<leader>muC", "<cmd>Telescope colorscheme<cr>", desc = "Lists Colorscheme" },
+		-- { "<leader>fg", "<cmd>Telescope live_grep<cr>" },
+		-- { "<leader>fr", "<cmd>Telescope lsp_references<cr>", desc = "Telescope all references" },
+		-- {
+		-- 	"<leader>fs",
+		-- 	"<cmd>Telescope lsp_document_symbols<cr>",
+		-- 	desc = "Lists LSP document symbols in the current buffer",
+		-- },
+		-- {
+		-- 	"<leader>fd",
+		-- 	"<cmd>Telescope lsp_definitions<cr>",
+		-- 	desc = "Goto the definition of the word under the cursor",
+		-- },
+		-- {
+		-- 	"<leader>fx",
+		-- 	"<cmd>Telescope diagnostics<cr>",
+		-- 	desc = "Lists Diagnostics for all open buffers or a specific buffer",
+		-- },
+		--
+		-- { "<leader>muC", "<cmd>Telescope colorscheme<cr>", desc = "Lists Colorscheme" },
 	},
 	opts = function()
 		require("telescope").setup({
