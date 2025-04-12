@@ -5,19 +5,19 @@ return {
     -- Language Parser
     "nvim-treesitter/nvim-treesitter",
     opts = function()
-      vim.list_extend(setup_sources.language_parsers, { "svelte" })
+      vim.list_extend(setup_sources.language_parsers, { "typescript" })
     end,
   },
   {
     -- LSP
     "williamboman/mason-lspconfig.nvim",
     opts = function()
-      vim.list_extend(setup_sources.mason_lsps, { "svelte" })
+      vim.list_extend(setup_sources.mason_lsps, { "vtsls" })
 
       -- setup client
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lspconfig = require("lspconfig")
-      lspconfig.svelte.setup({ capabilities = capabilities })
+      lspconfig.vtsls.setup({ capabilities = capabilities })
     end,
   },
   {
