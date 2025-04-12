@@ -27,20 +27,20 @@ vim.keymap.set("n", "<leader>cx", "<cmd>!chmod +x %<CR>", { silent = true })
 
 --vim.keymap.set({ "n", "v" }, "<leader>c/", function()
 vim.keymap.set({ "n", "v" }, "<C-_>", function() -- <C-_> = ctrl + /
-	vim.cmd("normal gcc")
+  vim.cmd("normal gcc")
 end, { desc = "Comment" })
 
 -- WINDOW
 vim.keymap.set("n", "<leader>uv", function()
-	vim.cmd("vsplit")
+  vim.cmd("vsplit")
 end, { desc = "Split window left" })
 
 vim.keymap.set("n", "<leader>uh", function()
-	vim.cmd("split")
+  vim.cmd("split")
 end, { desc = "Split window bellow" })
 
 vim.keymap.set("n", "<leader>ud", function()
-	vim.cmd("close")
+  vim.cmd("close")
 end, { desc = "Delete window" })
 
 vim.keymap.set("n", "<leader>w", "<c-w>", { desc = "Move to next window" })
@@ -65,17 +65,30 @@ vim.keymap.set("n", "<leader>un", "<cmd>wincmd =<cr>", { desc = "Reset window wi
 
 -- "neovim/nvim-lspconfig",
 vim.keymap.set("n", "<leader>mlc", function()
-	vim.cmd("checkhealth vim.lsp")
+  vim.cmd("checkhealth vim.lsp")
 end, { desc = "Check LSP health" })
 
 vim.keymap.set("n", "<leader>ca", function()
-	vim.lsp.buf.code_action()
+  vim.lsp.buf.code_action()
 end, { desc = "Code action" })
 
--- "williamboman/mason.nvim",
-vim.keymap.set("n", "<leader>mlm", function()
-	vim.cmd("Mason")
-end, { desc = "Open mason" })
+
+-- █▀█ ▄▀█ █▀▀ █▀▄▀█ ▄▀█ █▄░█ █▀
+-- █▀▀ █▀█ █▄▄ █░▀░█ █▀█ █░▀█ ▄█
+-- folke / lazy.nvim
+vim.keymap.set("n", "<leader>mpl", function()
+  vim.cmd("Lazy")
+end, { desc = "Open Lazy" })
+
+-- williamboman / mason.nvim
+vim.keymap.set("n", "<leader>mpm", function()
+  vim.cmd("Mason")
+end, { desc = "Open Mason" })
+
+-- nvim-treesitter / nvim-treesitter
+vim.keymap.set("n", "<leader>mpt", "<cmd>TSInstallInfo<CR>", { desc = "Open Treesitter PM" })
+-- ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄
+
 
 -- "nvimtools/none-ls",
 vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "vim.lsp.buf.format/none-ls format" })
@@ -83,21 +96,27 @@ vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "vim.lsp.buf.form
 
 
 vim.keymap.set({ "n" }, "<leader>cpp", function() -- <C-_> = ctrl + /
-	vim.cmd("normal gqip")
+  vim.cmd("normal gqip")
 end, { desc = "format paragraph" })
 
 vim.keymap.set({ "n" }, "<leader>cpl", function() -- <C-_> = ctrl + /
-	vim.cmd("normal gq$")
+  vim.cmd("normal gq$")
 end, { desc = "format line" })
 
 
 -- QUICK ACCESS TO CONFIG
-vim.keymap.set("n", "<leader>mca", "<cmd>exe 'edit' stdpath('config').'/lua/config/auto-commands.lua'<cr>", { desc = "auto-commands" })
-vim.keymap.set("n", "<leader>mck", "<cmd>exe 'edit' stdpath('config').'/lua/config/general-keymaps.lua'<cr>", { desc = "general-keymaps" })
-vim.keymap.set("n", "<leader>mco", "<cmd>exe 'edit' stdpath('config').'/lua/config/options.lua'<cr>", { desc = "options" })
-vim.keymap.set("n", "<leader>mce", "<cmd>exe 'edit' stdpath('config').'/lua/plugins/extras.lua'<cr>", { desc = "plugin/extras" })
-vim.keymap.set("n", "<leader>mct", "<cmd>exe 'edit' stdpath('config').'/lua/plugins/test-plugins.lua'<cr>", { desc = "plugin/test-plugins" })
-vim.keymap.set("n", "<leader>mcn", "<cmd>exe 'edit' stdpath('config').'/my-nvim-notes.md'<cr>", { desc = "my nvim notes" })
+vim.keymap.set("n", "<leader>mca", "<cmd>exe 'edit' stdpath('config').'/lua/config/auto-commands.lua'<cr>",
+  { desc = "auto-commands" })
+vim.keymap.set("n", "<leader>mck", "<cmd>exe 'edit' stdpath('config').'/lua/config/general-keymaps.lua'<cr>",
+  { desc = "general-keymaps" })
+vim.keymap.set("n", "<leader>mco", "<cmd>exe 'edit' stdpath('config').'/lua/config/options.lua'<cr>",
+  { desc = "options" })
+vim.keymap.set("n", "<leader>mce", "<cmd>exe 'edit' stdpath('config').'/lua/plugins/extras.lua'<cr>",
+  { desc = "plugin/extras" })
+vim.keymap.set("n", "<leader>mct", "<cmd>exe 'edit' stdpath('config').'/lua/plugins/test-plugins.lua'<cr>",
+  { desc = "plugin/test-plugins" })
+vim.keymap.set("n", "<leader>mcn", "<cmd>exe 'edit' stdpath('config').'/my-nvim-notes.md'<cr>",
+  { desc = "my nvim notes" })
 vim.keymap.set("n", "<leader>mcs", "<cmd>so %<cr>", { desc = "source this buffer" })
 vim.keymap.set("n", "<leader>mh", "<cmd>exe 'edit' stdpath('config').'/my-nvim-notes.md'<cr>", { desc = "my cheatsheet" })
 
@@ -115,3 +134,8 @@ vim.keymap.set("n", "<leader>fb", "<cmd>b#<cr>", { desc = "Back to previous buff
 -- map("v", "<a-k>", ":<c-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "move up" })
 
 
+-- map("v", "<a-k>", ":<c-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "move up" })
+-- map("v", "<a-k>", ":<c-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "move up" })
+-- map("v", "<a-k>", ":<c-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "move up" })
+-- map("v", "<a-k>", ":<c-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "move up" })
+-- map("v", "<a-k>", ":<c-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "move up" })

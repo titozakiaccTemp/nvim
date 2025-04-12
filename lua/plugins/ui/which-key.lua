@@ -58,6 +58,7 @@ return {
 
 				{ "<leader>m", group = "Miscellaneous" },
 				{ "<leader>ml", group = "LSP things" },
+				{ "<leader>mp", group = "Package Managers" },
 				{ "<leader>mu", group = "UI things" },
 				{ "<leader>mc", group = "Neovim Config" },
 
