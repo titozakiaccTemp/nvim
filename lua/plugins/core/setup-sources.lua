@@ -3,6 +3,10 @@ local M = {}
 -- for treesitter parser
 M.language_parsers = {
   -- list lang parsers : https://github.com/nvim-treesitter/nvim-treesitter/tree/master?tab=readme-ov-file#supported-languages
+  "go",
+  "gomod",
+  "gowork",
+  "gosum",
   -- "svelte"
 }
 
